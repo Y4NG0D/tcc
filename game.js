@@ -4,10 +4,10 @@ var playerX = 150;
 var playerY = 200;
 var playerWidth = 50;
 var playerHeight = 50;
-var playerSpeed = 5; // Aumentando a velocidade de movimento
+var playerSpeed = 7; // Aumentando a velocidade de movimento
 var jumping = false;
-var jumpPower = 8; // Força do pulo
-var jumpSpeed = 3; // Velocidade horizontal durante o pulo
+var jumpPower = 12; // Aumentando a força do pulo
+var jumpSpeed = 5; // Aumentando a velocidade horizontal durante o pulo
 
 // Variáveis para controle de movimento
 var moveLeftKeyPressed = false;
@@ -87,7 +87,7 @@ function update() {
 
         // Simular a gravidade
         if (playerY < 200) {
-            playerY += 2; // Velocidade de queda
+            playerY += 3; // Velocidade de queda
         }
         if (playerY >= 200) {
             playerY = 200;
