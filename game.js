@@ -1,10 +1,10 @@
 // Variáveis globais
 var canvas, ctx;
-var playerX = 50;
+var playerX = 150;
 var playerY = 200;
 var playerWidth = 50;
 var playerHeight = 50;
-var playerSpeed = 2;
+var playerSpeed = 3;
 var jumping = false;
 
 // Event listeners para capturar as teclas pressionadas
