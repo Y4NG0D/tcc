@@ -4,8 +4,14 @@ var playerX = 150;
 var playerY = 200;
 var playerWidth = 50;
 var playerHeight = 50;
-var playerSpeed = 3;
+var playerSpeed = 5; // Aumentando a velocidade de movimento
 var jumping = false;
+var jumpPower = 8; // Força do pulo
+var jumpSpeed = 3; // Velocidade horizontal durante o pulo
+
+// Variáveis para controle de movimento
+var moveLeftKeyPressed = false;
+var moveRightKeyPressed = false;
 
 // Event listeners para capturar as teclas pressionadas
 window.addEventListener("keydown", function(event) {
@@ -18,6 +24,18 @@ window.addEventListener("keydown", function(event) {
             break;
         case 32: // Tecla espaço
             jump();
+            break;
+    }
+});
+
+// Event listeners para detectar quando as teclas são soltas
+window.addEventListener("keyup", function(event) {
+    switch(event.keyCode) {
+        case 37: // Tecla esquerda
+            moveLeftKeyPressed = false;
+            break;
+        case 39: // Tecla direita
+            moveRightKeyPressed = false;
             break;
     }
 });
@@ -43,12 +61,34 @@ function gameLoop() {
 function update() {
     // Atualizar a posição do jogador
     if (jumping) {
-        playerY -= 5;
+        // Movimento lateral durante o pulo
+        if (playerX < canvas.width - playerWidth && moveRightKeyPressed) {
+            playerX += jumpSpeed;
+        }
+        if (playerX > 0 && moveLeftKeyPressed) {
+            playerX -= jumpSpeed;
+        }
+
+        // Atualizar a posição vertical do jogador
+        playerY -= jumpPower;
+
+        // Verificar se o jogador chegou ao topo do pulo
         if (playerY <= 100) {
             jumping = false;
         }
     } else {
-        playerY += 5;
+        // Movimento lateral ao andar para a direita ou para a esquerda
+        if (moveRightKeyPressed) {
+            playerX += playerSpeed;
+        }
+        if (moveLeftKeyPressed) {
+            playerX -= playerSpeed;
+        }
+
+        // Simular a gravidade
+        if (playerY < 200) {
+            playerY += 2; // Velocidade de queda
+        }
         if (playerY >= 200) {
             playerY = 200;
         }
@@ -65,12 +105,13 @@ function draw() {
     ctx.fillRect(playerX, playerY, playerWidth, playerHeight);
 }
 
+// Funções para controle de movimento
 function moveLeft() {
-    playerX -= playerSpeed;
+    moveLeftKeyPressed = true;
 }
 
 function moveRight() {
-    playerX += playerSpeed;
+    moveRightKeyPressed = true;
 }
 
 function jump() {
