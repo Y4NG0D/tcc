@@ -78,10 +78,10 @@ function update() {
         }
     } else {
         // Movimento lateral ao andar para a direita ou para a esquerda
-        if (moveRightKeyPressed) {
+        if (moveRightKeyPressed && playerX < canvas.width - playerWidth) {
             playerX += playerSpeed;
         }
-        if (moveLeftKeyPressed) {
+        if (moveLeftKeyPressed && playerX > 0) {
             playerX -= playerSpeed;
         }
 
@@ -103,6 +103,11 @@ function draw() {
     // Desenhar o jogador
     ctx.fillStyle = "#FF0000";
     ctx.fillRect(playerX, playerY, playerWidth, playerHeight);
+
+    // Desenhar as paredes do jogo (opcional)
+    // ctx.fillStyle = "#000000";
+    // ctx.fillRect(0, 0, 10, canvas.height); // Parede esquerda
+    // ctx.fillRect(canvas.width - 10, 0, 10, canvas.height); // Parede direita
 }
 
 // Função para o pulo do jogador
