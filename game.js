@@ -146,3 +146,36 @@ function jump() {
 window.onload = function() {
     init();
 };
+
+// Função para desenhar os elementos do jogo
+function draw() {
+    // Limpar o canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Desenhar o jogador (gato)
+    ctx.fillStyle = "#333"; // Cor do corpo do gato
+    ctx.fillRect(playerX, playerY, playerWidth, playerHeight); // Desenha o corpo do gato
+
+    // Desenhar a cabeça do gato
+    ctx.fillStyle = "#333"; // Cor da cabeça do gato
+    ctx.fillRect(playerX + 15, playerY - 40, 40, 40); // Desenha a cabeça do gato
+
+    // Desenhar as orelhas do gato
+    ctx.fillStyle = "#333"; // Cor das orelhas do gato
+    ctx.fillRect(playerX + 10, playerY - 20, 20, 20); // Desenha a orelha esquerda do gato
+    ctx.fillRect(playerX + 40, playerY - 20, 20, 20); // Desenha a orelha direita do gato
+
+    // Desenhar os olhos do gato
+    ctx.fillStyle = "#fff"; // Cor dos olhos do gato
+    ctx.fillRect(playerX + 20, playerY - 30, 10, 10); // Desenha o olho esquerdo do gato
+    ctx.fillRect(playerX + 40, playerY - 30, 10, 10); // Desenha o olho direito do gato
+
+    // Desenhar as patas do gato
+    ctx.fillStyle = "#333"; // Cor das patas do gato
+    ctx.fillRect(playerX + 20, playerY + 50, 10, 30); // Desenha a pata esquerda do gato
+    ctx.fillRect(playerX + 40, playerY + 50, 10, 30); // Desenha a pata direita do gato
+
+    // Desenhar a cauda do gato
+    ctx.fillStyle = "#333"; // Cor da cauda do gato
+    ctx.fillRect(playerX - 30, playerY + 20, 30, 80); // Desenha a cauda do gato
+}
