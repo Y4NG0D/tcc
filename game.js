@@ -12,6 +12,7 @@ var jumpSpeed = 15; // Aumentando a velocidade horizontal durante o pulo em 3x
 // Variáveis para controle de movimento
 var moveLeftKeyPressed = false;
 var moveRightKeyPressed = false;
+var jumpKeyPressed = false;
 
 // Event listeners para capturar as teclas pressionadas
 window.addEventListener("keydown", function(event) {
@@ -23,7 +24,7 @@ window.addEventListener("keydown", function(event) {
             moveRightKeyPressed = true;
             break;
         case 32: // Tecla espaço
-            jump();
+            jumpKeyPressed = true;
             break;
     }
 });
@@ -36,6 +37,9 @@ window.addEventListener("keyup", function(event) {
             break;
         case 39: // Tecla direita
             moveRightKeyPressed = false;
+            break;
+        case 32: // Tecla espaço
+            jumpKeyPressed = false;
             break;
     }
 });
@@ -62,10 +66,10 @@ function update() {
     // Atualizar a posição do jogador
     if (jumping) {
         // Movimento lateral durante o pulo
-        if (playerX < canvas.width - playerWidth && moveRightKeyPressed) {
+        if (moveRightKeyPressed && playerX < canvas.width - playerWidth) {
             playerX += jumpSpeed;
         }
-        if (playerX > 0 && moveLeftKeyPressed) {
+        if (moveLeftKeyPressed && playerX > 0) {
             playerX -= jumpSpeed;
         }
 
@@ -87,11 +91,16 @@ function update() {
 
         // Simular a gravidade
         if (playerY < 200) {
-            playerY += 1; // Velocidade de queda
+            playerY += 3; // Velocidade de queda
         }
         if (playerY >= 200) {
             playerY = 200;
         }
+    }
+
+    // Verificar se o jogador está no chão e a tecla de pulo está pressionada
+    if (!jumping && jumpKeyPressed) {
+        jump();
     }
 }
 
@@ -103,18 +112,11 @@ function draw() {
     // Desenhar o jogador
     ctx.fillStyle = "#FF0000";
     ctx.fillRect(playerX, playerY, playerWidth, playerHeight);
-
-    // Desenhar as paredes do jogo (opcional)
-    // ctx.fillStyle = "#000000";
-    // ctx.fillRect(0, 0, 10, canvas.height); // Parede esquerda
-    // ctx.fillRect(canvas.width - 10, 0, 10, canvas.height); // Parede direita
 }
 
 // Função para o pulo do jogador
 function jump() {
-    if (!jumping && playerY === 200) {
-        jumping = true;
-    }
+    jumping = true;
 }
 
 // Iniciar o jogo quando a página for carregada
