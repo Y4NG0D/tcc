@@ -4,10 +4,10 @@ var playerX = 150;
 var playerY = 200;
 var playerWidth = 50;
 var playerHeight = 50;
-var playerSpeed = 14; // Aumentando a velocidade de movimento em 2x
+var playerSpeed = 21; // Aumentando a velocidade de movimento em 50%
 var jumping = false;
-var jumpPower = 24; // Aumentando a força do pulo em 2x
-var jumpSpeed = 15; // Aumentando a velocidade horizontal durante o pulo em 3x
+var jumpPower = 24;
+var jumpSpeed = 15;
 
 // Variáveis para controle de movimento
 var moveLeftKeyPressed = false;
