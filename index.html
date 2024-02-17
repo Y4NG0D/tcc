@@ -5,10 +5,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo de Tradução</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilo para o Canvas */
+        canvas {
+            display: block;
+            margin: 0 auto;
+            border: 5px solid #000;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+    </style>
 </head>
 <body>
     <canvas id="gameCanvas" width="800" height="400"></canvas>
     <div class="watermark">2024, Y4NG0D. Todos os direitos reservados.</div>
-    <script src="game.js"></script>
+    <script>
+        // JavaScript para o jogo
+        var canvas = document.getElementById('gameCanvas');
+        var ctx = canvas.getContext('2d');
+        
+        // Variáveis globais do jogo
+        var playerX = 50;
+        var playerY = 200;
+        var playerWidth = 50;
+        var playerHeight = 50;
+        var playerSpeed = 2;
+        var jumping = false;
+
+        // Event listeners para capturar as teclas pressionadas
+        window.addEventListener("keydown", function(event) {
+            switch(event.keyCode) {
+                case 37: // Tecla esquerda
+                    moveLeft();
+                    break;
+                case 39: // Tecla direita
+                    moveRight();
+                    break;
+                case 32: // Tecla espaço
+                    jump();
+                    break;
+            }
+        });
+
+        // Função principal para inicializar o jogo
+        function init() {
+            // Iniciar o loop do jogo
+            gameLoop();
+        }
+
+        // Função principal para atualizar e desenhar o jogo
+        function gameLoop() {
+            update();
+            draw();
+            
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Função para atualizar a lógica do jogo
+        function update() {
+            // Atualizar a posição do jogador
+            if (jumping) {
+                playerY -= 5;
+                if (playerY <= 100) {
+                    jumping = false;
+                }
+            } else {
+                playerY += 5;
+                if (playerY >= 200) {
+                    playerY = 200;
+                }
+            }
+        }
+
+        // Função para desenhar os elementos do jogo
+        function draw() {
+            // Limpar o canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Desenhar o jogador
+            ctx.fillStyle = "#FF0000";
+            ctx.fillRect(playerX, playerY, playerWidth, playerHeight);
+        }
+
+        function moveLeft() {
+            playerX -= playerSpeed;
+        }
+
+        function moveRight() {
+            playerX += playerSpeed;
+        }
+
+        function jump() {
+            if (!jumping && playerY === 200) {
+                jumping = true;
+            }
+        }
+
+        // Iniciar o jogo quando a página for carregada
+        window.onload = function() {
+            init();
+        };
+    </script>
 </body>
 </html>
