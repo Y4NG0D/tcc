@@ -4,10 +4,10 @@ var playerX = 150;
 var playerY = 200;
 var playerWidth = 50;
 var playerHeight = 50;
-var playerSpeed = 7; // Aumentando a velocidade de movimento
+var playerSpeed = 14; // Aumentando a velocidade de movimento em 2x
 var jumping = false;
-var jumpPower = 12; // Aumentando a força do pulo
-var jumpSpeed = 5; // Aumentando a velocidade horizontal durante o pulo
+var jumpPower = 24; // Aumentando a força do pulo em 2x
+var jumpSpeed = 15; // Aumentando a velocidade horizontal durante o pulo em 3x
 
 // Variáveis para controle de movimento
 var moveLeftKeyPressed = false;
@@ -17,10 +17,10 @@ var moveRightKeyPressed = false;
 window.addEventListener("keydown", function(event) {
     switch(event.keyCode) {
         case 37: // Tecla esquerda
-            moveLeft();
+            moveLeftKeyPressed = true;
             break;
         case 39: // Tecla direita
-            moveRight();
+            moveRightKeyPressed = true;
             break;
         case 32: // Tecla espaço
             jump();
@@ -105,15 +105,7 @@ function draw() {
     ctx.fillRect(playerX, playerY, playerWidth, playerHeight);
 }
 
-// Funções para controle de movimento
-function moveLeft() {
-    moveLeftKeyPressed = true;
-}
-
-function moveRight() {
-    moveRightKeyPressed = true;
-}
-
+// Função para o pulo do jogador
 function jump() {
     if (!jumping && playerY === 200) {
         jumping = true;
