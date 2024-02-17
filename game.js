@@ -13,6 +13,7 @@ var jumpSpeed = 15;
 var moveLeftKeyPressed = false;
 var moveRightKeyPressed = false;
 var jumpKeyPressed = false;
+var touchControl = false; // Flag para indicar se os controles de tela sensível ao toque estão ativados
 
 // Event listeners para capturar as teclas pressionadas
 window.addEventListener("keydown", function(event) {
@@ -49,8 +50,17 @@ function init() {
     canvas = document.getElementById("gameCanvas");
     ctx = canvas.getContext("2d");
 
+    // Adicionar evento de clique ao botão Mobile/Desktop
+    var mobileDesktopButton = document.getElementById("mobileDesktopButton");
+    mobileDesktopButton.addEventListener("click", toggleTouchControl);
+
     // Iniciar o loop do jogo
     gameLoop();
+}
+
+// Função para alternar entre os controles de tela sensível ao toque e os controles de teclado
+function toggleTouchControl() {
+    touchControl = !touchControl;
 }
 
 // Função principal para atualizar e desenhar o jogo
@@ -101,6 +111,11 @@ function update() {
     // Verificar se o jogador está no chão e a tecla de pulo está pressionada
     if (!jumping && jumpKeyPressed) {
         jump();
+    }
+
+    // Atualizar a lógica dos controles de tela sensível ao toque
+    if (touchControl) {
+        // Implementar lógica de controle de tela sensível ao toque aqui
     }
 }
 
