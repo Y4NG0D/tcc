@@ -1,6 +1,6 @@
 // Variáveis globais
 var canvas, ctx;
-var playerX = 150;
+var playerX = 400; // Posição inicial do jogador no centro da tela
 var playerY = 200;
 var playerWidth = 50;
 var playerHeight = 50;
@@ -116,6 +116,14 @@ function update() {
     // Atualizar a lógica dos controles de tela sensível ao toque
     if (touchControl) {
         // Implementar lógica de controle de tela sensível ao toque aqui
+    }
+
+    // Implementar colisões laterais para impedir que o jogador ultrapasse os limites da tela
+    if (playerX < 0) {
+        playerX = 0;
+    }
+    if (playerX + playerWidth > canvas.width) {
+        playerX = canvas.width - playerWidth;
     }
 }
 
