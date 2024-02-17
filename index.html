@@ -5,19 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo de Tradução</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Estilo para o Canvas */
-        canvas {
-            display: block;
-            margin: 0 auto;
-            border: 5px solid #000;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-    </style>
 </head>
 <body>
-    <canvas id="gameCanvas" width="800" height="400"></canvas>
+    <div class="character cat">
+        <!-- Corpo -->
+        <div class="body"></div>
+        <!-- Cabeça -->
+        <div class="head">
+            <div class="eyes"></div>
+            <div class="ears"></div>
+        </div>
+        <!-- Pernas -->
+        <div class="legs">
+            <div class="leg"></div>
+            <div class="leg"></div>
+        </div>
+        <!-- Rabo -->
+        <div class="tail"></div>
+    </div>
+
     <div class="watermark">2024, Y4NG0D. Todos os direitos reservados.</div>
     <script src="game.js"></script>
 </body>
