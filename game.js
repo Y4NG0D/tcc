@@ -87,7 +87,7 @@ function update() {
 
         // Simular a gravidade
         if (playerY < 200) {
-            playerY += 3; // Velocidade de queda
+            playerY += 1; // Velocidade de queda
         }
         if (playerY >= 200) {
             playerY = 200;
