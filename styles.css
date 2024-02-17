@@ -2,11 +2,24 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #f0f0f0;
+    background-color: #4CAF50; /* verde escuro */
+    font-family: Arial, sans-serif;
 }
 
 canvas {
     display: block;
-    margin: auto;
-    border: 1px solid #000;
+    margin: 0 auto;
+    border: 5px solid #000;
+    background-color: #fff; /* branco */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* sombra */
+}
+
+/* Estilo para a marca d'água */
+.watermark {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5); /* cor branca com transparência */
 }
