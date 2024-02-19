@@ -1,3 +1,4 @@
+// Variáveis globais
 var canvas, ctx;
 var playerX = 400; // Posição inicial do jogador no centro da tela
 var playerY = 200;
@@ -77,10 +78,10 @@ function update() {
     // Atualizar a posição do jogador
     if (jumping) {
         // Movimento lateral durante o pulo
-        if (moveRightKeyPressed && playerX < canvas.width - playerWidth) {
+        if (moveRightKeyPressed && playerX < canvas.width - playerWidth && playerX + playerWidth < canvas.width - collisionZoneWidth / 2) {
             playerX += jumpSpeed;
         }
-        if (moveLeftKeyPressed && playerX > 0) {
+        if (moveLeftKeyPressed && playerX > 0 && playerX > collisionZoneWidth / 2) {
             playerX -= jumpSpeed;
         }
 
@@ -93,10 +94,10 @@ function update() {
         }
     } else {
         // Movimento lateral ao andar para a direita ou para a esquerda
-        if (moveRightKeyPressed && playerX < canvas.width - playerWidth) {
+        if (moveRightKeyPressed && playerX < canvas.width - playerWidth && playerX + playerWidth < canvas.width - collisionZoneWidth / 2) {
             playerX += playerSpeed;
         }
-        if (moveLeftKeyPressed && playerX > 0) {
+        if (moveLeftKeyPressed && playerX > 0 && playerX > collisionZoneWidth / 2) {
             playerX -= playerSpeed;
         }
 
@@ -138,55 +139,12 @@ function draw() {
     ctx.fillRect(playerX, playerY, playerWidth, playerHeight);
 }
 
-
-// Função para atualizar a lógica do jogo
-function update() {
-    // Atualizar a posição do jogador
-    if (jumping) {
-        // Movimento lateral durante o pulo
-        if (moveRightKeyPressed && playerX < canvas.width - playerWidth && playerX + playerWidth < canvas.width - collisionZoneWidth / 2) {
-            playerX += jumpSpeed;
-        }
-        if (moveLeftKeyPressed && playerX > 0 && playerX > collisionZoneWidth / 2) {
-            playerX -= jumpSpeed;
-        }
-
-        // Atualizar a posição vertical do jogador
-        playerY -= jumpPower;
-
-        // Verificar se o jogador chegou ao topo do pulo
-        if (playerY <= 100) {
-            jumping = false;
-        }
-    } else {
-        // Movimento lateral ao andar para a direita ou para a esquerda
-        if (moveRightKeyPressed && playerX < canvas.width - playerWidth && playerX + playerWidth < canvas.width - collisionZoneWidth / 2) {
-            playerX += playerSpeed;
-        }
-        if (moveLeftKeyPressed && playerX > 0 && playerX > collisionZoneWidth / 2) {
-            playerX -= playerSpeed;
-        }
-
-        // Simular a gravidade
-        if (playerY < 200) {
-            playerY += 3; // Velocidade de queda
-        }
-        if (playerY >= 200) {
-            playerY = 200;
-        }
-    }
-
-    // Verificar se o jogador está no chão e a tecla de pulo está pressionada
-    if (!jumping && jumpKeyPressed) {
-        jump();
-    }
-
-    // Implementar colisões laterais para impedir que o jogador ultrapasse os limites da tela
-    if (playerX < collisionZoneWidth / 2) {
-        playerX = collisionZoneWidth / 2;
-    }
-    if (playerX + playerWidth > canvas.width - collisionZoneWidth / 2) {
-        playerX = canvas.width - playerWidth - collisionZoneWidth / 2;
-    }
+// Função para o pulo do jogador
+function jump() {
+    jumping = true;
 }
 
+// Iniciar o jogo quando a página for carregada
+window.onload = function() {
+    init();
+};
