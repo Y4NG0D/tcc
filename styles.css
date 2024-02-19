@@ -11,9 +11,24 @@ body {
 canvas {
     display: block;
     margin: 0 auto;
+    max-width: 100%;
+    height: auto;
     border: 5px solid #000;
-    background-color: #fff; /* branco */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* sombra */
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilo para o botão Mobile/Desktop */
+#mobileDesktopButton {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
 }
 
 /* Estilo para a marca d'água */
@@ -24,19 +39,4 @@ canvas {
     transform: translateX(-50%);
     font-size: 14px;
     color: rgba(0, 0, 0, 0.5); /* cor branca com transparência */
-}
-
-/* Estilo para o botão Mobile/Desktop */
-#mobileDesktopButton {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    z-index: 100; /* Garante que o botão esteja sempre acima de outros elementos */
 }
