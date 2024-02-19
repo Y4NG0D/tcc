@@ -4,10 +4,10 @@ var playerX = 400; // Posição inicial do jogador no centro da tela
 var playerY = 200;
 var playerWidth = 50;
 var playerHeight = 50;
-var playerSpeed = 21; // Aumentando a velocidade de movimento em 50%
+var playerSpeed = 15; // Aumentando a velocidade de movimento em 50%
 var jumping = false;
-var jumpPower = 24;
-var jumpSpeed = 15;
+var jumpPower = 15;
+var jumpSpeed = 7;
 
 // Variáveis para controle de movimento
 var moveLeftKeyPressed = false;
@@ -101,7 +101,7 @@ function update() {
 
         // Simular a gravidade
         if (playerY < 200) {
-            playerY += 3; // Velocidade de queda
+            playerY += 10; // Velocidade de queda
         }
         if (playerY >= 200) {
             playerY = 200;
