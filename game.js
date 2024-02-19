@@ -4,12 +4,10 @@ var playerX = 400; // Posição inicial do jogador no centro da tela
 var playerY = 200;
 var playerWidth = 50;
 var playerHeight = 50;
-var playerSpeed = 10; // Ajuste para uma velocidade mais adequada
+var playerSpeed = 21; // Aumentando a velocidade de movimento em 50%
 var jumping = false;
-var jumpPower = 15;
-var jumpSpeed = 5;
-var collisionZoneWidth = 300; // Largura da zona de colisão
-var collisionZoneHeight = 200; // Altura da zona de colisão
+var jumpPower = 24;
+var jumpSpeed = 15;
 
 // Variáveis para controle de movimento
 var moveLeftKeyPressed = false;
@@ -78,10 +76,10 @@ function update() {
     // Atualizar a posição do jogador
     if (jumping) {
         // Movimento lateral durante o pulo
-        if (moveRightKeyPressed && playerX < canvas.width - playerWidth && playerX + playerWidth < canvas.width - collisionZoneWidth / 2) {
+        if (moveRightKeyPressed && playerX < canvas.width - playerWidth) {
             playerX += jumpSpeed;
         }
-        if (moveLeftKeyPressed && playerX > 0 && playerX > collisionZoneWidth / 2) {
+        if (moveLeftKeyPressed && playerX > 0) {
             playerX -= jumpSpeed;
         }
 
@@ -94,16 +92,16 @@ function update() {
         }
     } else {
         // Movimento lateral ao andar para a direita ou para a esquerda
-        if (moveRightKeyPressed && playerX < canvas.width - playerWidth && playerX + playerWidth < canvas.width - collisionZoneWidth / 2) {
+        if (moveRightKeyPressed && playerX < canvas.width - playerWidth) {
             playerX += playerSpeed;
         }
-        if (moveLeftKeyPressed && playerX > 0 && playerX > collisionZoneWidth / 2) {
+        if (moveLeftKeyPressed && playerX > 0) {
             playerX -= playerSpeed;
         }
 
         // Simular a gravidade
         if (playerY < 200) {
-            playerY += 10; // Velocidade de queda
+            playerY += 3; // Velocidade de queda
         }
         if (playerY >= 200) {
             playerY = 200;
@@ -138,13 +136,3 @@ function draw() {
     ctx.fillStyle = "#FF0000";
     ctx.fillRect(playerX, playerY, playerWidth, playerHeight);
 }
-
-// Função para o pulo do jogador
-function jump() {
-    jumping = true;
-}
-
-// Iniciar o jogo quando a página for carregada
-window.onload = function() {
-    init();
-};
